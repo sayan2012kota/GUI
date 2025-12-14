@@ -1,0 +1,35 @@
+from tkinter import *
+window = Tk()
+window.geometry("600x300")
+window.resizable(False, False)
+def make_value():
+    kg_value = float(entry.get())
+    gram_value = kg_value * 1000
+    pounds_value = kg_value * 2.20462
+    ounces_value = kg_value * 35.274
+    entry2.delete("0", END)
+    entry2.insert(END, gram_value)
+    entry3.delete("0", END)
+    entry3.insert(END, pounds_value)
+    entry4.delete("0", END)
+    entry4.insert(END, ounces_value)
+label = Label(window, text = "Enter the weight in Kg", font = ("Calibra", 10 ))
+label.place(x=50, y=30)
+entry = Entry(window, width = 15)
+entry.place(x=250, y=30)
+label2 = Label(window, text = "Gram", font = ("Calibra",  10 ))
+label2.place(x=120, y=80)
+label3 = Label(window, text = "Pounds", font = ("Calibra", 10))
+label3.place(x=300, y=80)
+label4 = Label(window, text = "Ounce", font = ("Calibra", 10))
+label4.place(x=480, y=80)
+entry2 = Entry(window, width = 15)
+entry2.place(x=120, y=100)
+button = Button(window, text = "Convert", font = ("Calibra", 10), command = make_value)
+button.place(x=450, y=25)
+entry3 = Entry(window, width = 15)
+entry3.place(x=300, y=100)
+entry4 = Entry(window, width=15)
+entry4.place(x=480, y=100)
+
+window.mainloop()
