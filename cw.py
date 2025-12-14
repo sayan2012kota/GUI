@@ -1,0 +1,21 @@
+from tkinter import *
+window = Tk()
+window.geometry("200x200")
+menu = Menu(window)
+file = Menu(menu, tearoff = 0)
+edit = Menu(menu, tearoff = 0)
+menu.add_cascade(label = "Edit", menu = edit)
+menu.add_cascade(label = "File", menu = file)
+edit.add_command(label = "Undo", command = None)
+edit.add_command(label = "Redo", command = None)
+edit.add_command(label = "Cut", command=None)
+edit.add_command(label = "Copy", command = None)
+file.add_command(label = "New Text File", command=None)
+file.add_command(label = "New File", command=None)
+file.add_command(label = "New Folder", command=None)
+file.add_separator()
+file.add_command(label = "Exit", command = window.destroy)
+
+
+window.config(menu = menu)
+window.mainloop()
