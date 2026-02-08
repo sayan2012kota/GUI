@@ -2,6 +2,11 @@ from tkinter import *
 from tkinter.ttk import *
 window = Tk()
 window.geometry("400x400")
+def make_table():
+    table = ""
+    for i in range(radio_number.get()):
+        table = number.get() "X" i+1 "=" number.get()*i+1
+    
 label = Label(window, text = "Select a number:")
 label.grid(row=0, column=0, columnspan=3, pady=20)
 label2 = Label(window, text = "Select the number and range:")
