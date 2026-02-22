@@ -5,9 +5,10 @@ window.geometry("400x400")
 def make_table():
     table = ""
     for i in range(radio_number.get()):
-        table = number.get() "X" i+1 "=" number.get()*i+1
-    
-label = Label(window, text = "Select a number:")
+        table = table + str(number.get()) + "X"+ str(i+1) + "=" + str(number.get()*(i+1)) + "\n"
+        print(table)
+    label3.configure(text = table)
+label = Label(window,text = "Select a number:" )
 label.grid(row=0, column=0, columnspan=3, pady=20)
 label2 = Label(window, text = "Select the number and range:")
 label2.grid(row=1, column=0, padx=25)
@@ -24,7 +25,9 @@ radiobutton3 = Radiobutton(window, text = "30", variable = radio_number, value =
 radiobutton3.grid(row=3, column=2, padx=25)
 radio_number.set(10)
 label3=Label(window, anchor="center")
+label3.place(x=150, y=100)
 button = Button(window, text = "Create multiplication table", command = make_table)
+button.place(x=170,y=350)
 
 
 
