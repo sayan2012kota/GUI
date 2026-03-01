@@ -10,8 +10,18 @@ def add_file():
     entry.delete(0, END)
 def save_file():
     saved_file = asksaveasfile(defaultextension=".txt")
-
-#def open_file():
+    if saved_file is not None:
+        for i in range(listbox.size()):
+            line = listbox.get(i)
+            print(line, file = saved_file)
+        listbox.delete(0, END)     
+def open_file():
+    the_selected_file = askopenfile(title="open")
+    if the_selected_file is not None:
+        listbox.delete(0, END)
+        read_file = the_selected_file.readlines()
+        for i in read_file:
+            listbox.insert(END, i)
 
 
 button =  Button(window, text = "SAVE", command = save_file)
@@ -27,7 +37,7 @@ scrollbar.config(command=listbox.yview)
 listbox.place(x=175, y=150)
 for i in range(30):
     listbox.insert(END, "List" +  str(i))
-button3 = Button(window, text = "OPEN", width = 15, )
+button3 = Button(window, text = "OPEN", width = 15, command = open_file)
 button3.place(x=45, y=180)
 button4 = Button(window, text = "DELETE", width = 15, command = delete_file)
 button4.place(x=550, y=180)
