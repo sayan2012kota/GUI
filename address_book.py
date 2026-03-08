@@ -1,7 +1,35 @@
 from tkinter import *
-
+AddressBook = {}
 window = Tk()
-window.geometry("500x800")
+window.geometry("500x700")
+def clear_entries():
+    entry.delete(0, END)
+    entry2.delete(0, END)
+    entry3.delete(0, END)
+    entry4.delete(0, END)
+    entry5.delete(0, END)
+def update():
+    x = entry.get()
+    if x not in AddressBook.keys():
+        listbox.insert(END, x)
+    AddressBook[x]=(entry2.get(), entry3.get(), entry4.get(), entry5.get())
+    print(AddressBook)
+    clear_entries()
+def delete():
+    selected_name = listbox.curselection()
+    del AddressBook[listbox.get(selected_name)]
+    listbox.delete(selected_name)
+    print(AddressBook)
+def edit():
+    clear_entries()
+    name = listbox.get(listbox.curselection())
+    entry.insert(END, name)
+    values = AddressBook[name]
+    entry2.insert(END, values[0])
+    entry3.insert(END, values[1])
+    entry4.insert(END, values[2])
+    entry5.insert(END, values[3])
+
 label = Label(window, text = "My Address Book")
 label.place(x=100,y=30)
 button = Button(window, text = "Open")
@@ -28,12 +56,16 @@ entry5 = Entry(window)
 entry5.place(x=325, y=280)
 listbox = Listbox(window, height = 20, width=25)
 listbox.place(x=50, y=75)
-button2 = Button(window, text = "Edit")
+button2 = Button(window, text = "Edit", command = edit)
 button2.place(x=50, y=470)
-button2 = Button(window, text = "Delete")
+button2 = Button(window, text = "Delete", command = delete)
 button2.place(x=120, y=470)
-button3 = Button(window, text = "Update/Add")
+button3 = Button(window, text = "Update/Add",  command = update)
 button3.place(x=350, y=470)
 button4 = Button(window,  text = "Save", width = 30)
 button4.place(x=150, y=550)
+
+
+
+
 window.mainloop()
