@@ -1,7 +1,19 @@
 from tkinter import *
+from tkinter.filedialog import *
 AddressBook = {}
 window = Tk()
 window.geometry("500x700")
+def open_file():
+    global AddressBook
+    opened_file = askopenfile(title = "Information")
+    AddressBook = eval(opened_file.read())
+    for i in AddressBook:
+        listbox.insert(END, i)
+def save_info():
+    saved_info = asksaveasfile(defaultextension=".txt")
+    print(AddressBook, file = saved_info)
+    AddressBook.clear()
+    listbox.delete(0, END)
 def clear_entries():
     entry.delete(0, END)
     entry2.delete(0, END)
@@ -32,7 +44,7 @@ def edit():
 
 label = Label(window, text = "My Address Book")
 label.place(x=100,y=30)
-button = Button(window, text = "Open")
+button = Button(window, text = "Open", command = open_file)
 button.place(x=250,y=30)
 label2 = Label(window, text = "Name:")
 label2.place(x=250, y=80)
@@ -62,7 +74,7 @@ button2 = Button(window, text = "Delete", command = delete)
 button2.place(x=120, y=470)
 button3 = Button(window, text = "Update/Add",  command = update)
 button3.place(x=350, y=470)
-button4 = Button(window,  text = "Save", width = 30)
+button4 = Button(window,  text = "Save", width = 30, command = save_info)
 button4.place(x=150, y=550)
 
 
